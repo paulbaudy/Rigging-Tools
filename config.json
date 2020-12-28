@@ -1,0 +1,51 @@
+{
+    "Locators": 
+    {
+        "RootHeight": 1.5,
+        "SpineCount": 4,
+        "SpineOffset": 0.25,
+        "SpineBaseHeight": 1.75,
+        "FingersCount": 5,
+        "PhalanxCount": 5,
+        "PhalanxOffset": 5
+    },
+    "BoneNames":
+    {
+        "RootName" : "Root" ,
+        "SpineName" : "Spine"
+    },
+    "IK":
+    [
+        {
+            "Name" : "LeftLeg",
+            "SourceJoint" : "Loc_L_UpperLegJ",
+            "EndJoint" : "Loc_L_FootJ",
+            "Solver" : "ikRPsolver"
+        },
+        {
+            "Name" : "RightLeg",
+            "SourceJoint" : "Loc_R_UpperLegJ",
+            "EndJoint" : "Loc_R_FootJ",
+            "Solver" : "ikRPsolver"
+        },
+        {
+            "Name" : "LeftArm",
+            "SourceJoint" : "RT_R_UpperArmJ",
+            "EndJoint" : "RT_R_WristJ",
+            "Solver" : "ikRPsolver"
+        },
+        {
+            "Name" : "RightArm",
+            "SourceJoint" : "RT_L_UpperArmJ",
+            "EndJoint" : "RT_L_WristJ",
+            "Solver" : "ikRPsolver"
+        },
+        {
+            "Name" : "Spine",
+            "SourceJoint" : "RT_Rig_Root",
+            "EndJoint" : "RT_Spine_3J",
+            "Solver" : "ikSplineSolver",
+            "Degree" : 1
+        }
+    ]
+}
