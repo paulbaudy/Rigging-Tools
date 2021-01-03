@@ -1,51 +1,98 @@
 {
-    "Locators": 
-    {
-        "RootHeight": 1.5,
-        "SpineCount": 4,
-        "SpineOffset": 0.25,
-        "SpineBaseHeight": 1.75,
-        "FingersCount": 5,
-        "PhalanxCount": 5,
-        "PhalanxOffset": 5
-    },
-    "BoneNames":
-    {
-        "RootName" : "Root" ,
-        "SpineName" : "Spine"
-    },
+
+    "RootHeight": 1.5,
+    "SpineCount": 4,
+    "SpineOffset": 0.25,
+    "SpineBaseHeight": 1.75,
+    "NeckHeight": 0.35,
+    "ArmSideOffset":0.35,
+    "ElbowSideOffset":0.1,
+    "ElbowHeight":0.5,
+    "FingersCount": 5,
+    "FingerSpacing":0.05,
+    "PhalanxCount": 3,
+    "PhalanxSideOffset": 0.1,
+    "LegsSideOffset": 0.2,
+    "LegsHeight":0.6,
+    "FootballOffset":0.2,
+    "ToesLength":0.2,
+    "Scale": 0.1,
+
+    "RootName" : "Root" ,
+    "SpineName" : "Spine",
+    "NeckName" : "Neck",
+    "LegGroupName" : "LegGrp",
+    "UpperLegName" : "UpperLeg",
+    "LowerLegName" : "LowerLeg",
+    "FootName" : "Foot",
+    "FootballName" : "FootBall",
+    "ToesName" : "Toes",
+    "HandGroupName" : "HandGrp",
+    "WristName" : "Wrist",
+    "FingerName" : "Finger",
+
+
+    "RigName" : "BaseJointRig",
+    "RigRootName" : "Rig_Root",
+    "DropOffRate" : 0.1,
+    "BindMethod" : 3,
+    "GeodesicRes" : 256,
+
     "IK":
     [
         {
             "Name" : "LeftLeg",
-            "SourceJoint" : "Loc_L_UpperLegJ",
-            "EndJoint" : "Loc_L_FootJ",
+            "SourceJoint" : "L_UpperLegJ",
+            "EndJoint" : "L_FootJ",
             "Solver" : "ikRPsolver"
         },
         {
             "Name" : "RightLeg",
-            "SourceJoint" : "Loc_R_UpperLegJ",
-            "EndJoint" : "Loc_R_FootJ",
+            "SourceJoint" : "R_UpperLegJ",
+            "EndJoint" : "R_FootJ",
             "Solver" : "ikRPsolver"
         },
         {
             "Name" : "LeftArm",
-            "SourceJoint" : "RT_R_UpperArmJ",
-            "EndJoint" : "RT_R_WristJ",
+            "SourceJoint" : "L_UpperArmJ",
+            "EndJoint" : "L_WristJ",
             "Solver" : "ikRPsolver"
         },
         {
             "Name" : "RightArm",
-            "SourceJoint" : "RT_L_UpperArmJ",
-            "EndJoint" : "RT_L_WristJ",
+            "SourceJoint" : "R_UpperArmJ",
+            "EndJoint" : "R_WristJ",
             "Solver" : "ikRPsolver"
         },
         {
             "Name" : "Spine",
-            "SourceJoint" : "RT_Rig_Root",
-            "EndJoint" : "RT_Spine_3J",
+            "SourceJoint" : "Rig_Root",
+            "EndJoint" : "Spine_3J",
             "Solver" : "ikSplineSolver",
             "Degree" : 1
         }
+    ],
+    "Ctrl" : 
+    [
+        {
+            "Name" : "RightLeg_Ctrl",
+            "TargetIK" : "RightLeg",
+            "Orient" : "R_FootJ"
+        },
+        {
+            "Name" : "LeftLeg_Ctrl",
+            "TargetIK" : "LeftLeg",
+            "Orient" : "L_FootJ"
+        },
+        {
+            "Name" : "RightWrist_Ctrl",
+            "TargetIK" : "RightArm",
+            "Orient" : "R_WristJ"
+        },
+        {
+            "Name" : "LeftWrist_Ctrl",
+            "TargetIK" : "LeftArm",
+            "Orient" : "L_WristJ"
+        } 
     ]
 }

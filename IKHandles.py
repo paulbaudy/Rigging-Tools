@@ -1,5 +1,6 @@
 import maya.cmds as cmds
 
+# Wrapper class that holds data on a IK handle
 class IkHandle():
     def __init__(self):
         self.name = 'None'
@@ -9,11 +10,14 @@ class IkHandle():
         self.degree = 'None'
         
     def __init__(self, Data):
-        self.name = Data['Name']
-        self.solverType = Data['Solver']
-        self.sourceJoint = Data['SourceJoint']
-        self.endJoint = Data['EndJoint']
-        self.degree = Data['Degree'] if 'Degree' in Data else 0
+        self.name = Data.get('Name')
+        self.solverType = Data.get('Solver')
+        self.sourceJoint = Data.get('SourceJoint')
+        self.endJoint = Data.get('EndJoint')
+        self.degree = Data.get('Degree')
+        
+    def toStr(self):
+        return self.solverType + ' ' + self.sourceJoint + ' ' + self.endJoint
                 
     def buildHandler(self):
         if self.solverType == 'ikSplineSolver':
@@ -25,17 +29,17 @@ class IkHandle():
             parentJoint = endJoint
             positions = []
              
-            while parentJoint != rootJoint:
-                print parentJoint
+            # list all joint locations from effector to parent
+            while parentJoint != rootJoint and parentJoint:
                 position = cmds.xform(parentJoint, q = True, t = True, ws = True)
                 positions.append(position)
                 parentJoint = cmds.listRelatives(parentJoint, p = True)
                 
             position = cmds.xform(rootJoint, q = True, t = True, ws = True)
             positions.append(position)
-                
-            print positions
             positions.reverse()
+            
+            # Create curves to control the spine
             cmds.curve(p = [(rootPosition[0], rootPosition[1], rootPosition[2])], n = 'Curve', degree = self.degree)
             for position in positions:
                 cmds.curve('Curve', a = True, p = position)
@@ -51,11 +55,11 @@ class IkHandle():
                 parent = cluster
             
             cmds.ikHandle(n = self.name, sj = rootJoint[0], ee = endJoint[0], sol = self.solverType, c = 'Curve', ccv = False)
-        else:
+        else:            
             cmds.ikHandle(name = self.name, sj = cmds.ls(self.sourceJoint)[0], ee = cmds.ls(self.endJoint)[0], sol = self.solverType)
         
          
-
+# Container for all IK handles
 class IkHandler():
     def importConfig(self, Data):
         ikConfig = Data['IK'] or []
@@ -63,14 +67,17 @@ class IkHandler():
         self.handlers = []
         for handleData in ikConfig:
             newHandler = IkHandle(handleData)
-            newHandler.buildHandler()
             self.handlers.append(newHandler)
             
+        self.refreshList()
+        
+    def refreshList(self):
+        for handle in self.handlers:
+            cmds.textScrollList('listWidget', edit=True, append=[handle.toStr()])
             
-        print self.handlers
+    def buildHandlers(self):
+        for handle in self.handlers:
+            handle.buildHandler()
     
     def __init__(self):
-        print 'yay'
-
-def BuildHandles():
-    print 'yay'
+        self.handlers = []

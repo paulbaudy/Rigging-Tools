@@ -1,17 +1,10 @@
 import maya.cmds as cmds
 
-def init():
-        global RootHeight
-        RootHeight = 0
-        global SpineCount
-        SpineCount = 0
-        global FingersCount
-        FingersCount = 0
-        global PhalanxCount
-        PhalanxCount = 0
-       
-
-def initFromView(view):
-        print 'init from view'
-        
-        print 'Settings applied'
+class Settings():
+    def __init__(self, Data = dict()):
+         for key in Data:
+            setattr(self, key, Data[key])
+            print str(key) + ' ' + str(Data[key])
+            
+         
+inst = Settings()

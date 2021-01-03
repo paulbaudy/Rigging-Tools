@@ -264,6 +264,20 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="rigRootNameLabel">
+        <property name="text">
+         <string>RigRootName</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="rigRootNameLineEdit">
+        <property name="text">
+         <string>Rig_Root</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </widget>
@@ -328,21 +342,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>180</y>
-       <width>311</width>
-       <height>131</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_9">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>140</y>
+       <y>120</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -351,11 +355,117 @@
       <string>Add Handle</string>
      </property>
     </widget>
+    <widget class="QListWidget" name="listWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>150</y>
+       <width>241</width>
+       <height>121</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="IK_BuildHandles">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>280</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Build Handles</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
      <string>Skin</string>
     </attribute>
+    <widget class="QPushButton" name="S_BinSkinButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Bind Skin</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="formLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>231</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="dropOffRateLabel">
+        <property name="text">
+         <string>Drop Off Rate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="dropOffRateLineEdit">
+        <property name="text">
+         <string>0.1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="skinMethodLabel">
+        <property name="text">
+         <string>Skin Method</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="skinMethodBox">
+        <item>
+         <property name="text">
+          <string>Classical linear skinning</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dual quaternion</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Weighted blend</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_5">
+    <attribute name="title">
+     <string>Controllers</string>
+    </attribute>
+    <widget class="QPushButton" name="C_BuildControllers">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>101</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Build Controllers</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
